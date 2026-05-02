@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slotifai">
+  <rect width="32" height="32" rx="7.2" fill="#0F4C5C"></rect>
+  <rect x="3.5" y="8" width="7" height="7" rx="2" fill="#FFFFFF" fill-opacity="0.85"></rect>
+  <rect x="12.5" y="8" width="7" height="7" rx="2" fill="#FFFFFF" fill-opacity="0.85"></rect>
+  <rect x="3.5" y="17" width="7" height="7" rx="2" fill="#FFFFFF" fill-opacity="0.85"></rect>
+  <rect x="12.5" y="17" width="7" height="7" rx="2" fill="#FFFFFF" fill-opacity="0.85"></rect>
+  <rect x="21.5" y="17" width="7" height="7" rx="2" fill="#FFFFFF" fill-opacity="0.85"></rect>
+  <rect x="21.5" y="8" width="7" height="7" rx="2" fill="#E5A823"></rect>
+  <path d="M 25 10 C 25.51 10.99 25.51 10.99 26.5 11.5 C 25.51 12.01 25.51 12.01 25 13 C 24.49 12.01 24.49 12.01 23.5 11.5 C 24.49 10.99 24.49 10.99 25 10 Z" fill="#FFFFFF"></path>
+</svg>
