@@ -58,7 +58,12 @@ const avatarTone = computed(() => getAvatarTone(props.master.name))
 
 const minPrice = computed(() => props.master.minPrice ?? '?')
 const specializationLabel = computed(() => {
-  const key = SPEC_KEY_BY_API[props.master.specialization]
-  return key ? t(`masters.specs.${key}`) : props.master.specialization
+  return props.master.specialization
+    .split(',')
+    .map(s => {
+      const key = SPEC_KEY_BY_API[s.trim()]
+      return key ? t(`masters.specs.${key}`) : s.trim()
+    })
+    .join(', ')
 })
 </script>
