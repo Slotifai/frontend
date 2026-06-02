@@ -127,7 +127,6 @@ async function fetchMasters() {
     })
     masters.value = result.data
     total.value = result.total
-    console.log('[AdminMasters] first master:', JSON.stringify(result.data[0]))
   } catch { masters.value = []; total.value = 0 }
   finally { loading.value = false }
 }

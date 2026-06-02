@@ -28,8 +28,17 @@ export interface AuthResponse {
 }
 
 type RawTokenResponse = {
-  accessToken: string
-  refreshToken: string
+  accessToken?: string
+  access_token?: string
+  refreshToken?: string
+  refresh_token?: string
+}
+
+function parseTokens(raw: RawTokenResponse) {
+  return {
+    accessToken: raw.accessToken ?? raw.access_token ?? '',
+    refreshToken: raw.refreshToken ?? raw.refresh_token ?? '',
+  }
 }
 
 type RawMeResponse = {
@@ -44,7 +53,7 @@ type RawMeResponse = {
 
 export const authApi = {
   login: (payload: LoginPayload) =>
-    apiClient.post<RawTokenResponse>('/auth/login', payload).then((r) => r.data),
+    apiClient.post<RawTokenResponse>('/auth/login', payload).then((r) => parseTokens(r.data)),
 
   register: (payload: RegisterPayload) => {
     const endpoint =
@@ -56,7 +65,7 @@ export const authApi = {
   refresh: (refreshToken: string) =>
     apiClient
       .post<RawTokenResponse>('/auth/refresh', { refresh_token: refreshToken })
-      .then((r) => r.data),
+      .then((r) => parseTokens(r.data)),
 
   me: () =>
     apiClient.get<RawMeResponse>('/auth/me').then((r) => ({
@@ -77,7 +86,7 @@ export const authApi = {
     apiClient.post('/auth/reset-password', { token, newPassword }).then((r) => r.data),
 
   adminLogin: (payload: LoginPayload) =>
-    apiClient.post<RawTokenResponse>('/auth/admin/login', payload).then((r) => r.data),
+    apiClient.post<RawTokenResponse>('/auth/admin/login', payload).then((r) => parseTokens(r.data)),
 
   logout: () =>
     apiClient.post('/auth/logout').then((r) => r.data),

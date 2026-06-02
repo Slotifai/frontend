@@ -33,17 +33,33 @@ export interface AdminAppointment {
 
 function normalizeUser(u: unknown): AdminUser {
   const raw = u as Record<string, unknown>
+
+  // /admin/masters returns master profile with nested user
+  const nestedUser = raw.user as Record<string, unknown> | null | undefined
+  if (nestedUser) {
+    const isBlocked = nestedUser.isBlocked === true
+    return {
+      id: String(nestedUser.id),
+      name: (raw.name as string) || (raw.email as string) || '?',
+      email: (raw.email as string) || (nestedUser.email as string) || '',
+      role: String(nestedUser.role).toUpperCase() as AdminUser['role'],
+      status: isBlocked ? 'BLOCKED' : 'ACTIVE',
+      createdAt: (raw.createdAt as string) || (nestedUser.createdAt as string) || '',
+    }
+  }
+
   const profile = raw.profile as Record<string, unknown> | null | undefined
   const firstName = (profile?.firstName as string) || (raw.firstName as string) || ''
   const lastName = (profile?.lastName as string) || (raw.lastName as string) || ''
   const fullName = [firstName, lastName].filter(Boolean).join(' ')
   const name = fullName || (profile?.name as string) || (raw.name as string) || (raw.email as string) || '?'
+  const isBlocked = raw.isBlocked === true
   return {
     ...((u as unknown) as AdminUser),
     id: String(raw.id),
     name,
     role: String(raw.role).toUpperCase() as AdminUser['role'],
-    status: String(raw.status ?? 'active').toUpperCase() as AdminUser['status'],
+    status: isBlocked ? 'BLOCKED' : String(raw.status ?? 'active').toUpperCase() as AdminUser['status'],
   }
 }
 
