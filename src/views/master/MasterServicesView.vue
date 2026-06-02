@@ -23,9 +23,9 @@
             <tbody>
               <tr v-for="s in services" :key="s.id">
                 <td class="td"><div style="font-weight: 500;">{{ s.name }}</div></td>
-                <td class="td">{{ s.durationMinutes }} min</td>
+                <td class="td">{{ s.durationMinutes }} {{ t('common.min') }}</td>
                 <td class="td">
-                  <span v-if="+s.price === 0" style="color: var(--text-muted);">Free</span>
+                  <span v-if="+s.price === 0" style="color: var(--text-muted);">{{ t('common.free') }}</span>
                   <b v-else>{{ (+s.price).toFixed(2) }} ₴</b>
                 </td>
                 <td class="td" style="text-align: right;">
@@ -126,8 +126,8 @@ function openDelete(s: MasterService) {
 }
 
 function validate() {
-  formErrors.name = form.name.trim() ? '' : 'Required'
-  formErrors.duration = form.durationMinutes > 0 ? '' : 'Must be > 0'
+  formErrors.name = form.name.trim() ? '' : t('common.required')
+  formErrors.duration = form.durationMinutes > 0 ? '' : t('common.mustBePositive')
   return !formErrors.name && !formErrors.duration
 }
 

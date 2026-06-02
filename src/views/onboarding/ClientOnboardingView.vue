@@ -139,8 +139,8 @@ const howItWorks = computed(() => [
 ])
 
 function validateProfile() {
-  errors.firstName = profile.firstName.trim() ? '' : 'Required'
-  errors.phone = profile.phone.trim() ? '' : 'Required'
+  errors.firstName = profile.firstName.trim() ? '' : t('common.required')
+  errors.phone = profile.phone.trim() ? '' : t('common.required')
   return !errors.firstName && !errors.phone
 }
 

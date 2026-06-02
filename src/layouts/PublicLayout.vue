@@ -52,7 +52,7 @@
           <AppAvatar :name="user?.name || '?'" size="sm" tone="rose" />
           <div class="sidebar-user-info">
             <div class="sidebar-user-name">{{ user?.name || 'User' }}</div>
-            <div class="sidebar-user-role">{{ user?.role?.toLowerCase() }}</div>
+            <div class="sidebar-user-role">{{ user?.role === 'ADMIN' ? t('common.roleAdmin') : user?.role === 'MASTER' ? t('common.roleMaster') : t('common.roleClient') }}</div>
           </div>
           <button class="logout-btn" @click="handleLogout" :title="t('nav.signOut')">
             <span class="mdi mdi-logout-variant" />

@@ -26,6 +26,15 @@ export default {
     cancelled: 'Скасовано',
     active: 'Активний',
     blocked: 'Заблоковано',
+    roleClient: 'Клієнт',
+    roleMaster: 'Майстер',
+    roleAdmin: 'Адмін',
+    required: "Обов'язкове поле",
+    mustBePositive: 'Має бути > 0',
+    free: 'Безкоштовно',
+    min: 'хв',
+    appointmentNotFound: 'Запис не знайдено',
+    backToDashboard: 'На головну',
     today: 'Сьогодні',
     tomorrow: 'Завтра',
     thisWeek: 'Цього тижня',
@@ -138,6 +147,7 @@ export default {
       submit: 'Увійти',
       noAccount: 'Вперше на Slotifai?',
       createAccount: 'Створити акаунт',
+      errorInvalidCredentials: 'Неправильний email або пароль',
     },
 
     register: {
@@ -152,6 +162,7 @@ export default {
       lastName: 'Прізвище',
       lastNamePlaceholder: 'Коваль',
       email: 'Електронна пошта',
+      emailPlaceholder: "you{'@'}example.com",
       phone: 'Телефон',
       phonePlaceholder: '380991234567',
       specialization: 'Спеціалізація',
@@ -161,6 +172,7 @@ export default {
       submit: 'Створити акаунт',
       hasAccount: 'Вже є акаунт?',
       signIn: 'Увійти',
+      errorFailed: 'Реєстрація не вдалася. Спробуйте ще раз.',
     },
 
     forgot: {
@@ -290,6 +302,7 @@ export default {
     commentLabel: "Додати коментар (необов'язково)",
     commentPlaceholder: 'Розкажіть, що сподобалось або що можна покращити…',
     submit: 'Надіслати відгук',
+    errorFailed: 'Не вдалося надіслати відгук.',
   },
 
   clientProfile: {
@@ -452,6 +465,24 @@ export default {
     check2: 'Послуги додано',
     check3: 'Розклад визначено',
     goToDashboard: 'Перейти до кабінету',
+  },
+
+  validation: {
+    emailInvalid: 'Введіть коректний email',
+    required: "Це поле є обов'язковим",
+    passwordMin: 'Пароль має бути не менше {min} символів',
+    phoneRequired: 'Введіть номер телефону',
+    phoneInvalid: 'Введіть коректний номер (+380XXXXXXXXX)',
+  },
+
+  adminLogin: {
+    title: 'Вхід для адміністратора',
+    subtitle: 'Увійдіть з адміністраторським акаунтом',
+    email: 'Електронна пошта',
+    emailPlaceholder: "admin{'@'}example.com",
+    password: 'Пароль',
+    submit: 'Увійти',
+    errorInvalidCredentials: 'Невірні облікові дані або недостатньо прав',
   },
 
   adminDashboard: {

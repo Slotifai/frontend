@@ -26,6 +26,15 @@ export default {
     cancelled: 'Cancelled',
     active: 'Active',
     blocked: 'Blocked',
+    roleClient: 'Client',
+    roleMaster: 'Master',
+    roleAdmin: 'Admin',
+    required: 'Required',
+    mustBePositive: 'Must be > 0',
+    free: 'Free',
+    min: 'min',
+    appointmentNotFound: 'Appointment not found',
+    backToDashboard: 'Back to dashboard',
     today: 'Today',
     tomorrow: 'Tomorrow',
     thisWeek: 'This week',
@@ -138,6 +147,7 @@ export default {
       submit: 'Sign in',
       noAccount: 'New to Slotifai?',
       createAccount: 'Create an account',
+      errorInvalidCredentials: 'Invalid email or password',
     },
 
     register: {
@@ -152,6 +162,7 @@ export default {
       lastName: 'Last name',
       lastNamePlaceholder: 'Johnson',
       email: 'Email',
+      emailPlaceholder: "you{'@'}example.com",
       phone: 'Phone',
       phonePlaceholder: '380991234567',
       specialization: 'Specialization',
@@ -161,6 +172,7 @@ export default {
       submit: 'Create account',
       hasAccount: 'Already have an account?',
       signIn: 'Sign in',
+      errorFailed: 'Registration failed. Please try again.',
     },
 
     forgot: {
@@ -290,6 +302,7 @@ export default {
     commentLabel: 'Add a comment (optional)',
     commentPlaceholder: 'Share what you liked or what could be improved…',
     submit: 'Submit review',
+    errorFailed: 'Failed to submit review.',
   },
 
   clientProfile: {
@@ -452,6 +465,24 @@ export default {
     check2: 'Services configured',
     check3: 'Schedule defined',
     goToDashboard: 'Go to dashboard',
+  },
+
+  validation: {
+    emailInvalid: 'Enter a valid email',
+    required: 'This field is required',
+    passwordMin: 'Password must be at least {min} characters',
+    phoneRequired: 'Phone number is required',
+    phoneInvalid: 'Enter a valid Ukrainian phone (+380XXXXXXXXX)',
+  },
+
+  adminLogin: {
+    title: 'Admin sign in',
+    subtitle: 'Sign in with your administrator account',
+    email: 'Email',
+    emailPlaceholder: "admin{'@'}example.com",
+    password: 'Password',
+    submit: 'Sign in',
+    errorInvalidCredentials: 'Invalid credentials or insufficient permissions',
   },
 
   adminDashboard: {

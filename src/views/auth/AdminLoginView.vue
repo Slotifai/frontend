@@ -1,17 +1,17 @@
 <template>
   <AuthLayout>
     <div class="auth-head">
-      <div class="auth-title">Admin sign in</div>
-      <div class="auth-sub">Sign in with your administrator account</div>
+      <div class="auth-title">{{ t('adminLogin.title') }}</div>
+      <div class="auth-sub">{{ t('adminLogin.subtitle') }}</div>
     </div>
 
     <form @submit.prevent="handleSubmit" class="auth-form">
       <div class="field-group">
-        <label class="field-label">Email</label>
+        <label class="field-label">{{ t('adminLogin.email') }}</label>
         <v-text-field
           v-model="form.email"
           type="email"
-          placeholder="admin@example.com"
+          :placeholder="t('adminLogin.emailPlaceholder')"
           variant="outlined"
           density="compact"
           :error-messages="errors.email"
@@ -20,7 +20,7 @@
       </div>
 
       <div class="field-group">
-        <label class="field-label">Password</label>
+        <label class="field-label">{{ t('adminLogin.password') }}</label>
         <v-text-field
           v-model="form.password"
           :type="showPassword ? 'text' : 'password'"
@@ -37,7 +37,7 @@
       <ErrorMessage :message="serverError" />
 
       <button type="submit" class="sl-btn-primary" :disabled="loading">
-        <span v-if="!loading">Sign in</span>
+        <span v-if="!loading">{{ t('adminLogin.submit') }}</span>
         <span v-else class="btn-spinner" />
       </button>
     </form>
@@ -47,6 +47,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import { extractErrorMessage } from '@/utils/errorUtils'
@@ -54,6 +55,7 @@ import { validateEmail, validatePassword } from '@/utils/validation'
 import { authApi } from '@/api/auth'
 import { useAuthStore } from '@/stores/auth'
 
+const { t } = useI18n()
 const router = useRouter()
 const auth = useAuthStore()
 
@@ -81,7 +83,7 @@ async function handleSubmit() {
     router.push('/admin')
   } catch (err: unknown) {
     auth.logout()
-    serverError.value = extractErrorMessage(err, 'Invalid credentials or insufficient permissions')
+    serverError.value = extractErrorMessage(err, t('adminLogin.errorInvalidCredentials'))
   } finally {
     loading.value = false
   }

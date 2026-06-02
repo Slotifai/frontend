@@ -43,7 +43,7 @@
                       background: u.role === 'ADMIN' ? 'var(--primary-50)' : u.role === 'MASTER' ? 'var(--warning-soft)' : 'var(--surface-2)',
                       color: u.role === 'ADMIN' ? 'var(--primary)' : u.role === 'MASTER' ? 'var(--warning)' : 'var(--text-muted)',
                     }"
-                  >{{ u.role }}</span>
+                  >{{ u.role === 'ADMIN' ? t('common.roleAdmin') : u.role === 'MASTER' ? t('common.roleMaster') : t('common.roleClient') }}</span>
                 </td>
                 <td class="td">
                   <StatusBadge :status="u.status" />

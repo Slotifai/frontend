@@ -102,7 +102,7 @@ async function handleSubmit() {
     }
   } catch (err: unknown) {
     auth.logout()
-    serverError.value = extractErrorMessage(err, 'Invalid email or password')
+    serverError.value = extractErrorMessage(err, t('auth.login.errorInvalidCredentials'))
   } finally {
     loading.value = false
   }

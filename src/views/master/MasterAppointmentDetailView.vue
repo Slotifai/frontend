@@ -58,11 +58,11 @@
               </div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;">
                 <div v-if="appt.clientPhone">
-                  <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Phone</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">{{ t('common.phone') }}</div>
                   <div>{{ appt.clientPhone }}</div>
                 </div>
                 <div v-if="appt.clientEmail">
-                  <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Email</div>
+                  <div style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">{{ t('common.email') }}</div>
                   <div>{{ appt.clientEmail }}</div>
                 </div>
                 <div v-if="appt.clientNotes" style="grid-column: 1 / -1;">
@@ -120,8 +120,8 @@
         </div>
       </template>
 
-      <EmptyState v-else icon="note" title="Appointment not found" description="">
-        <router-link to="/master/dashboard"><v-btn size="small" color="primary">Back to dashboard</v-btn></router-link>
+      <EmptyState v-else icon="note" :title="t('common.appointmentNotFound')" description="">
+        <router-link to="/master/dashboard"><v-btn size="small" color="primary">{{ t('common.backToDashboard') }}</v-btn></router-link>
       </EmptyState>
     </div>
 

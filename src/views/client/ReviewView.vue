@@ -70,8 +70,8 @@
           </div>
         </template>
 
-        <EmptyState v-else icon="star" title="Appointment not found" description="">
-          <router-link to="/dashboard"><v-btn color="primary" size="small">Back to dashboard</v-btn></router-link>
+        <EmptyState v-else icon="star" :title="t('common.appointmentNotFound')" description="">
+          <router-link to="/dashboard"><v-btn color="primary" size="small">{{ t('common.backToDashboard') }}</v-btn></router-link>
         </EmptyState>
       </div>
     </div>
@@ -137,7 +137,7 @@ async function submit() {
     })
     router.push('/dashboard')
   } catch (err: unknown) {
-    serverError.value = extractErrorMessage(err, 'Failed to submit review.')
+    serverError.value = extractErrorMessage(err, t('review.errorFailed'))
   } finally {
     submitting.value = false
   }

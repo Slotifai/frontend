@@ -86,7 +86,7 @@
           <div class="service-preview" v-if="service.name">
             <div class="service-preview-name">{{ service.name || t('masterOnboarding.serviceNamePlaceholder') }}</div>
             <div class="service-preview-meta">
-              <span class="mdi mdi-clock-outline" /> {{ service.durationMinutes }} min
+              <span class="mdi mdi-clock-outline" /> {{ service.durationMinutes }} {{ t('common.min') }}
               <span class="service-preview-sep">·</span>
               {{ service.price || '—' }} ₴
             </div>
@@ -231,9 +231,9 @@ const profile = reactive({ firstName: '', lastName: '', phone: '', specializatio
 const profileErrors = reactive({ firstName: '', phone: '', specialization: '' })
 
 function validateProfile() {
-  profileErrors.firstName = profile.firstName.trim() ? '' : 'Required'
-  profileErrors.phone = profile.phone.trim() ? '' : 'Required'
-  profileErrors.specialization = profile.specialization.trim() ? '' : 'Required'
+  profileErrors.firstName = profile.firstName.trim() ? '' : t('common.required')
+  profileErrors.phone = profile.phone.trim() ? '' : t('common.required')
+  profileErrors.specialization = profile.specialization.trim() ? '' : t('common.required')
   return !profileErrors.firstName && !profileErrors.phone && !profileErrors.specialization
 }
 
@@ -258,8 +258,8 @@ const service = reactive({ name: '', durationMinutes: 30, price: 0 })
 const serviceErrors = reactive({ name: '', duration: '' })
 
 function validateService() {
-  serviceErrors.name = service.name.trim() ? '' : 'Required'
-  serviceErrors.duration = service.durationMinutes > 0 ? '' : 'Must be > 0'
+  serviceErrors.name = service.name.trim() ? '' : t('common.required')
+  serviceErrors.duration = service.durationMinutes > 0 ? '' : t('common.mustBePositive')
   return !serviceErrors.name && !serviceErrors.duration
 }
 

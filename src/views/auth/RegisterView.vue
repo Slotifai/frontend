@@ -39,7 +39,7 @@
 
       <div class="field-group">
         <label class="field-label">{{ t('auth.register.email') }}</label>
-        <v-text-field v-model="form.email" type="email" placeholder="you@example.com" variant="outlined" density="compact" :error-messages="errors.email" hide-details="auto" />
+        <v-text-field v-model="form.email" type="email" :placeholder="t('auth.register.emailPlaceholder')" variant="outlined" density="compact" :error-messages="errors.email" hide-details="auto" />
       </div>
 
       <div class="field-group">
@@ -224,7 +224,7 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import AppIcon from '@/components/AppIcon.vue'
 import ErrorMessage from '@/components/ErrorMessage.vue'
 import { extractErrorMessage } from '@/utils/errorUtils'
-import { validateEmail, validatePassword, validateRequired, validatePhone } from '@/utils/validation'
+import { validateEmail, validatePassword, validatePhone } from '@/utils/validation'
 import { authApi } from '@/api/auth'
 import { SPECIALIZATION_KEYS, SPEC_API_VALUE } from '@/constants/specializations'
 
@@ -305,8 +305,8 @@ const showPassword = ref(false)
 const phoneFocused = ref(false)
 
 function validate() {
-  errors.firstName = validateRequired(form.firstName, 'First name')
-  errors.lastName = validateRequired(form.lastName, 'Last name')
+  errors.firstName = form.firstName.trim() ? '' : t('common.required')
+  errors.lastName = form.lastName.trim() ? '' : t('common.required')
   errors.email = validateEmail(form.email)
   errors.phone = validatePhone(form.phone)
   errors.password = validatePassword(form.password)
@@ -329,7 +329,7 @@ async function handleSubmit() {
     })
     router.push({ path: '/login', query: { registered: '1' } })
   } catch (err: unknown) {
-    serverError.value = extractErrorMessage(err, 'Registration failed. Please try again.')
+    serverError.value = extractErrorMessage(err, t('auth.register.errorFailed'))
   } finally {
     loading.value = false
   }
