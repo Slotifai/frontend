@@ -34,7 +34,10 @@ export interface AdminAppointment {
 function normalizeUser(u: unknown): AdminUser {
   const raw = u as Record<string, unknown>
   const profile = raw.profile as Record<string, unknown> | null | undefined
-  const name = (profile?.name as string) || (raw.name as string) || (raw.email as string) || '?'
+  const firstName = (profile?.firstName as string) || (raw.firstName as string) || ''
+  const lastName = (profile?.lastName as string) || (raw.lastName as string) || ''
+  const fullName = [firstName, lastName].filter(Boolean).join(' ')
+  const name = fullName || (profile?.name as string) || (raw.name as string) || (raw.email as string) || '?'
   return {
     ...((u as unknown) as AdminUser),
     id: String(raw.id),
