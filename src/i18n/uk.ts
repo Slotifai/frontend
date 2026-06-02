@@ -459,6 +459,7 @@ export default {
     subtitle: 'Огляд платформи та ключові показники.',
     totalUsers: 'Всього користувачів',
     masters: 'Майстрів',
+    clients: 'Клієнтів',
     appointments: 'Записів',
     revenue: 'Дохід',
     breakdown: 'Розподіл записів',

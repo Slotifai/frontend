@@ -459,6 +459,7 @@ export default {
     subtitle: 'Platform overview and key metrics.',
     totalUsers: 'Total users',
     masters: 'Masters',
+    clients: 'Clients',
     appointments: 'Appointments',
     revenue: 'Revenue',
     breakdown: 'Appointment breakdown',

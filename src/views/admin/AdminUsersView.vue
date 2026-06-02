@@ -40,7 +40,7 @@
                     :style="{
                       fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em',
                       padding: '2px 8px', borderRadius: '4px',
-                      background: u.role === 'ADMIN' ? 'var(--primary-50)' : u.role === 'MASTER' ? '#FFF8E6' : 'var(--surface-2)',
+                      background: u.role === 'ADMIN' ? 'var(--primary-50)' : u.role === 'MASTER' ? 'var(--warning-soft)' : 'var(--surface-2)',
                       color: u.role === 'ADMIN' ? 'var(--primary)' : u.role === 'MASTER' ? 'var(--warning)' : 'var(--text-muted)',
                     }"
                   >{{ u.role }}</span>
