@@ -63,9 +63,9 @@ const metricCards = computed(() => {
   if (!stats.value) return []
   return [
     { label: t('adminDashboard.totalUsers'), value: stats.value.totalUsers.toLocaleString(), icon: 'users', iconBg: 'var(--primary-50)', iconColor: 'var(--primary)' },
-    { label: t('adminDashboard.masters'), value: stats.value.totalMasters.toLocaleString(), icon: 'scissors', iconBg: '#FFF8E6', iconColor: 'var(--warning)' },
+    { label: t('adminDashboard.masters'), value: stats.value.totalMasters.toLocaleString(), icon: 'scissors', iconBg: 'var(--warning-soft)', iconColor: 'var(--warning)' },
     { label: t('adminDashboard.appointments'), value: stats.value.totalAppointments.toLocaleString(), icon: 'calendar', iconBg: 'var(--success-soft)', iconColor: 'var(--success)' },
-    { label: t('adminDashboard.clients'), value: stats.value.totalClients.toLocaleString(), icon: 'users', iconBg: '#F0FDF4', iconColor: '#16a34a' },
+    { label: t('adminDashboard.clients'), value: stats.value.totalClients.toLocaleString(), icon: 'users', iconBg: 'var(--success-soft)', iconColor: 'var(--success)' },
   ]
 })
 
