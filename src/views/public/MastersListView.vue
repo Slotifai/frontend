@@ -36,7 +36,7 @@
       <LoadingSpinner v-if="loading" />
       <template v-else>
         <div
-          v-if="masters.length"
+          v-if="masters?.length"
           style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px;"
         >
           <MasterCard

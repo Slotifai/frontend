@@ -9,7 +9,7 @@ export function usePaginatedList<T>(
   fetchFn: (params: { page: number; limit: number }) => Promise<PaginatedFetchResult<T>>,
   limit = 20,
 ) {
-  const items = ref<T[]>([]) as import('vue').Ref<T[]>
+  const items = ref<T[]>([])
   const total = ref(0)
   const page = ref(1)
   const loading = ref(false)
