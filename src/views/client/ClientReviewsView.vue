@@ -1,7 +1,7 @@
 <template>
   <DashboardLayout>
     <div class="page-content">
-      <PageHeader title="My reviews" subtitle="Reviews you have left for masters" />
+      <PageHeader :title="t('clientReviews.title')" :subtitle="t('clientReviews.subtitle')" />
 
       <LoadingSpinner v-if="loading" />
 
@@ -21,7 +21,7 @@
             <div v-if="r.comment" style="font-size: 13px; line-height: 1.6; color: var(--text);">{{ r.comment }}</div>
           </div>
         </div>
-        <EmptyState v-else icon="star" title="No reviews yet" description="After completing an appointment you can leave a review for the master." />
+        <EmptyState v-else icon="star" :title="t('clientReviews.noReviews')" :description="t('clientReviews.noReviewsDesc')" />
       </template>
     </div>
   </DashboardLayout>
@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import StarRating from '@/components/StarRating.vue'
@@ -37,6 +38,7 @@ import EmptyState from '@/components/EmptyState.vue'
 import { clientsApi, type ClientReview } from '@/api/clients'
 import { formatDate } from '@/utils/dateUtils'
 
+const { t } = useI18n()
 const reviews = ref<ClientReview[]>([])
 const loading = ref(false)
 

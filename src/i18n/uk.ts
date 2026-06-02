@@ -302,6 +302,14 @@ export default {
     notesPlaceholder: 'Алергії, вподобання, особливі потреби…',
     savedSuccess: 'Профіль успішно збережено.',
     roleLabel: 'Клієнт',
+    myReviewsLink: 'Мої відгуки →',
+  },
+
+  clientReviews: {
+    title: 'Мої відгуки',
+    subtitle: 'Відгуки, які ви залишили майстрам',
+    noReviews: 'Відгуків ще немає',
+    noReviewsDesc: 'Після завершення запису ви зможете залишити відгук майстру.',
   },
 
   masterDashboard: {

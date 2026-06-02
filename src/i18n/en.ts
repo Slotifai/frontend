@@ -302,6 +302,14 @@ export default {
     notesPlaceholder: 'Allergies, preferences, accessibility needs…',
     savedSuccess: 'Profile saved successfully.',
     roleLabel: 'Client',
+    myReviewsLink: 'My reviews →',
+  },
+
+  clientReviews: {
+    title: 'My reviews',
+    subtitle: 'Reviews you have left for masters',
+    noReviews: 'No reviews yet',
+    noReviewsDesc: 'After completing an appointment you can leave a review for the master.',
   },
 
   masterDashboard: {

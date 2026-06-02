@@ -18,7 +18,7 @@
           </div>
           <div style="height: 1px; background: var(--divider); align-self: stretch; margin: 12px 0;" />
           <router-link to="/profile/reviews" style="font-size: 13px; color: var(--primary); text-decoration: none; font-weight: 500; align-self: flex-start;">
-            My reviews →
+            {{ t('clientProfile.myReviewsLink') }}
           </router-link>
         </aside>
         <div style="display: flex; flex-direction: column; gap: 16px;">
