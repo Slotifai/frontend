@@ -38,6 +38,7 @@ type RawMeResponse = {
   role: string
   isEmailVerified: boolean
   createdAt: string
+  telegramLinked: boolean
   profile: { id: number; name: string; phone: string } | null
 }
 
@@ -63,6 +64,7 @@ export const authApi = {
       email: r.data.email,
       name: r.data.profile?.name ?? r.data.email,
       role: r.data.role.toUpperCase() as AuthResponse['user']['role'],
+      telegramLinked: r.data.telegramLinked,
     })),
 
   verifyEmail: (token: string) =>

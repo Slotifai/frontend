@@ -37,16 +37,27 @@
           </form>
         </section>
         <section class="card card-pad">
-          <div style="font-size: 15px; font-weight: 600; margin-bottom: 4px;">Telegram</div>
-          <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Link your Telegram account to receive booking notifications via bot.</div>
-          <div v-if="tgDeepLink" style="padding: 12px 14px; background: var(--success-soft); border-radius: var(--r-sm); font-size: 13px; color: var(--success); margin-bottom: 12px;">
-            Scan or click the link to connect:
-            <a :href="tgDeepLink" target="_blank" style="display: block; margin-top: 6px; font-weight: 600; word-break: break-all; color: var(--success);">{{ tgDeepLink }}</a>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.686-1.685 7.946c-.127.56-.46.695-.932.432l-2.58-1.902-1.244 1.197c-.138.138-.253.253-.52.253l.186-2.63 4.793-4.33c.208-.186-.046-.29-.322-.104L8.35 14.39l-2.537-.792c-.551-.173-.563-.551.115-.815l9.92-3.825c.46-.167.86.112.713.728z" fill="#229ED9"/></svg>
+            <div style="font-size: 15px; font-weight: 600;">Telegram</div>
+            <span v-if="user?.telegramLinked" style="font-size: 11px; font-weight: 600; padding: 2px 8px; background: var(--success-soft); color: var(--success); border-radius: 20px;">Підключено</span>
+            <span v-else style="font-size: 11px; font-weight: 600; padding: 2px 8px; background: var(--warning-soft, #fff8e1); color: var(--warning, #f59e0b); border-radius: 20px;">Не підключено</span>
+          </div>
+          <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            {{ user?.telegramLinked ? 'Ваш Telegram підключено. Ви будете отримувати сповіщення про нові записи.' : 'Підключіть Telegram, щоб отримувати сповіщення про нові записи через бота.' }}
+          </div>
+          <div v-if="tgDeepLink" style="padding: 12px 14px; background: var(--info-soft, #e8f4fd); border-radius: var(--r-sm); font-size: 13px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="color: var(--text-muted);">Натисніть кнопку нижче — бот відкриється і автоматично прив'яже ваш акаунт:</div>
+            <a :href="tgDeepLink" target="_blank" class="sl-btn-primary" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; width: fit-content;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.686-1.685 7.946c-.127.56-.46.695-.932.432l-2.58-1.902-1.244 1.197c-.138.138-.253.253-.52.253l.186-2.63 4.793-4.33c.208-.186-.046-.29-.322-.104L8.35 14.39l-2.537-.792c-.551-.173-.563-.551.115-.815l9.92-3.825c.46-.167.86.112.713.728z" fill="currentColor"/></svg>
+              Відкрити Telegram бота
+            </a>
           </div>
           <ErrorMessage :message="tgError" />
-          <v-btn variant="outlined" size="small" :loading="tgLoading" @click="linkTelegram">
-            Generate Telegram link
-          </v-btn>
+          <button v-if="!tgDeepLink" type="button" class="sl-btn-ghost" style="display: inline-flex; align-items: center; gap: 6px;" :disabled="tgLoading" @click="linkTelegram">
+            <span v-if="tgLoading">Генерується…</span>
+            <span v-else>{{ user?.telegramLinked ? '🔄 Перепідключити Telegram' : '🔗 Підключити Telegram' }}</span>
+          </button>
         </section>
         </div>
       </div>
