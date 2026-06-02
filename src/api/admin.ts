@@ -17,6 +17,7 @@ export interface AdminUser {
   role: 'CLIENT' | 'MASTER' | 'ADMIN'
   status: 'ACTIVE' | 'BLOCKED'
   createdAt: string
+  specialization?: string
   appointmentsCount?: number
 }
 
@@ -45,6 +46,7 @@ function normalizeUser(u: unknown): AdminUser {
       role: String(nestedUser.role).toUpperCase() as AdminUser['role'],
       status: isBlocked ? 'BLOCKED' : 'ACTIVE',
       createdAt: (raw.createdAt as string) || (nestedUser.createdAt as string) || '',
+      specialization: (raw.specialization as string) || undefined,
     }
   }
 

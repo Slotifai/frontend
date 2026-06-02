@@ -33,7 +33,7 @@
                     </div>
                   </div>
                 </td>
-                <td class="td" style="font-size: 13px; color: var(--text-muted);">—</td>
+                <td class="td" style="font-size: 13px; color: var(--text-muted);">{{ m.specialization || '—' }}</td>
                 <td class="td"><StatusBadge :status="m.status" /></td>
                 <td class="td" style="font-size: 12px; color: var(--text-muted);">{{ formatDate(m.createdAt) }}</td>
                 <td class="td" style="text-align: right;">
