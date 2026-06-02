@@ -33,9 +33,12 @@ export interface AdminAppointment {
 
 function normalizeUser(u: unknown): AdminUser {
   const raw = u as Record<string, unknown>
+  const profile = raw.profile as Record<string, unknown> | null | undefined
+  const name = (profile?.name as string) || (raw.name as string) || (raw.email as string) || '?'
   return {
     ...((u as unknown) as AdminUser),
     id: String(raw.id),
+    name,
     role: String(raw.role).toUpperCase() as AdminUser['role'],
     status: String(raw.status ?? 'active').toUpperCase() as AdminUser['status'],
   }

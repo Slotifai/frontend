@@ -63,7 +63,7 @@
             {{ t('sidebar.appointments') }}
           </router-link>
           <div class="sidebar-section-label">System</div>
-          <a href="#" class="sidebar-item">
+          <a href="#" class="sidebar-item" style="opacity: 0.4; pointer-events: none; cursor: default;">
             <span class="mdi mdi-cog-outline nav-icon" />
             {{ t('sidebar.settings') }}
           </a>
