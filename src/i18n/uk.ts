@@ -264,7 +264,7 @@ export default {
     welcome: 'З поверненням, {name}',
     upcomingCount: 'У вас {count} майбутній запис. | У вас {count} майбутні записи. | У вас {count} майбутніх записів.',
     noUpcoming: 'Майбутніх записів немає.',
-    bookNew: '+ Новий запис',
+    bookNew: 'Новий запис',
     upcoming: 'Майбутні',
     past: 'Минулі',
     completed: 'Завершені',
