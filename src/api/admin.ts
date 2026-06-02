@@ -46,9 +46,18 @@ function normalizeUser(u: unknown): AdminUser {
 
 function normalizeAppointment(a: unknown): AdminAppointment {
   const raw = a as Record<string, unknown>
+  const client = raw.client as Record<string, unknown> | null | undefined
+  const master = raw.master as Record<string, unknown> | null | undefined
+  const service = raw.service as Record<string, unknown> | null | undefined
+  const startTime = raw.startTime as string
   return {
-    ...((a as unknown) as AdminAppointment),
     id: String(raw.id),
+    clientName: (client?.name as string) || (client?.email as string) || '—',
+    masterName: (master?.name as string) || '—',
+    serviceName: (service?.name as string) || '—',
+    date: startTime,
+    startTime: startTime ? new Date(startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—',
+    price: Number(service?.price ?? 0),
     status: String(raw.status).toUpperCase() as AdminAppointment['status'],
   }
 }
