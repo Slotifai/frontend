@@ -29,7 +29,10 @@
             </div>
             <label class="sl-field">
               <span class="sl-label">{{ t('masterProfile.specialization') }}</span>
-              <input v-model="form.specialization" class="sl-input" :placeholder="t('masterProfile.specializationPlaceholder')" />
+              <select v-model="form.specialization" class="sl-input">
+                <option value="">{{ t('masterProfile.specializationPlaceholder') }}</option>
+                <option v-for="s in specOptions" :key="s.value" :value="s.value">{{ s.label }}</option>
+              </select>
             </label>
             <FormTextarea v-model="form.notes" :label="t('masterProfile.about')" :placeholder="t('masterProfile.aboutPlaceholder')" min-height="110px" />
             <div v-if="saved" style="padding: 10px 14px; background: var(--success-soft); color: var(--success); border-radius: var(--r-sm); font-size: 13px;">{{ t('masterProfile.savedSuccess') }}</div>
@@ -78,6 +81,15 @@ import { useSaveSuccess } from '@/composables/useSaveSuccess'
 import { masterMeApi } from '@/api/masterMe'
 import { useAuthStore } from '@/stores/auth'
 import { authApi } from '@/api/auth'
+import { SPECIALIZATION_KEYS } from '@/constants/specializations'
+import { SPEC_API_VALUE } from '@/constants/specializations'
+
+const specOptions = computed(() =>
+  SPECIALIZATION_KEYS.filter(k => k !== 'all').map(k => ({
+    value: SPEC_API_VALUE[k],
+    label: t(`masters.specs.${k}`),
+  }))
+)
 
 const { t } = useI18n()
 const auth = useAuthStore()
