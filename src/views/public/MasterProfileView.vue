@@ -12,7 +12,7 @@
       <div v-else-if="master" style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: flex-start;">
         <div>
           <div class="card" style="padding: 24px; margin-bottom: 0; display: flex; gap: 20px;">
-            <div style="width: 120px; height: 120px; border-radius: 12px; background-image: repeating-linear-gradient(135deg, #ECEDF0 0 8px, #F5F6F8 8px 16px); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <div style="width: 120px; height: 120px; border-radius: 12px; background-image: repeating-linear-gradient(135deg, var(--surface-3) 0 8px, var(--surface-2) 8px 16px); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
               <AppAvatar :name="master.name" size="lg" :tone="avatarTone" />
             </div>
             <div style="flex: 1; min-width: 0;">
