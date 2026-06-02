@@ -16,10 +16,10 @@ const props = withDefaults(
 const TONES: Record<AvatarTone, { bg: string; fg: string }> = {
   primary: { bg: 'var(--primary-soft)', fg: 'var(--primary)' },
   accent:  { bg: 'var(--accent-soft)',  fg: 'var(--warning)'  },
-  teal:    { bg: '#D6E8EC', fg: '#0F4C5C' },
-  rose:    { bg: '#F7DDE0', fg: '#9B3848' },
-  sage:    { bg: '#DCE8DD', fg: '#3F6B4F' },
-  indigo:  { bg: '#DCE0F0', fg: '#3F4A8C' },
+  teal:    { bg: 'var(--avatar-teal-bg, #D6E8EC)', fg: 'var(--avatar-teal-fg, #0F4C5C)' },
+  rose:    { bg: 'var(--avatar-rose-bg, #F7DDE0)', fg: 'var(--avatar-rose-fg, #9B3848)' },
+  sage:    { bg: 'var(--avatar-sage-bg, #DCE8DD)', fg: 'var(--avatar-sage-fg, #3F6B4F)' },
+  indigo:  { bg: 'var(--avatar-indigo-bg, #DCE0F0)', fg: 'var(--avatar-indigo-fg, #3F4A8C)' },
 }
 
 const initials = computed(() =>

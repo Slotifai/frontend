@@ -125,6 +125,16 @@ html.dark {
   --danger: #F05252;
   --danger-soft: #2D1010;
   --danger-glow: rgba(240,82,82,.15);
+
+  /* Avatar tones — dark mode */
+  --avatar-teal-bg: #0D2F38;
+  --avatar-teal-fg: #4FB8CE;
+  --avatar-rose-bg: #2D1018;
+  --avatar-rose-fg: #E8848F;
+  --avatar-sage-bg: #0F2415;
+  --avatar-sage-fg: #6DBF87;
+  --avatar-indigo-bg: #151830;
+  --avatar-indigo-fg: #8B94E0;
   --info: #60A5FA;
   --info-soft: #0D1F3D;
   --info-glow: rgba(96,165,250,.15);
