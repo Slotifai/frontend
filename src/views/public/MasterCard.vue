@@ -15,7 +15,7 @@
       <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 4px;">
         <div>
           <div style="font-weight: 600; font-size: 14px;">{{ master.name }}</div>
-          <div style="color: var(--text-muted); font-size: 12px;">{{ master.specialization }}</div>
+          <div style="color: var(--text-muted); font-size: 12px;">{{ specializationLabel }}</div>
         </div>
       </div>
 
@@ -46,6 +46,7 @@ import AppAvatar from '@/components/AppAvatar.vue'
 import StarRating from '@/components/StarRating.vue'
 import { type Master } from '@/api/masters'
 import { getAvatarTone } from '@/utils/avatarTones'
+import { SPEC_KEY_BY_API } from '@/constants/specializations'
 
 const { t } = useI18n()
 
@@ -56,4 +57,8 @@ const hovered = ref(false)
 const avatarTone = computed(() => getAvatarTone(props.master.name))
 
 const minPrice = computed(() => props.master.minPrice ?? '?')
+const specializationLabel = computed(() => {
+  const key = SPEC_KEY_BY_API[props.master.specialization]
+  return key ? t(`masters.specs.${key}`) : props.master.specialization
+})
 </script>
