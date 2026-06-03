@@ -601,7 +601,7 @@ export default {
     subtitle: 'Your booking assistant',
     clearChat: 'Clear conversation',
     greeting: "Hi! I'm your Slotifai assistant. Ask me about masters, services, or bookings — I'm here to help!",
-    suggestions: ['Find a barber near me', 'Best nail salons', 'Recommend a massage', 'How do I book?'],
+    suggestions: ['How do I book a master?', 'How do I cancel an appointment?', 'How do I leave a review?', 'How do I reschedule?'],
     inputPlaceholder: 'Ask anything… (Enter to send)',
     rateLimit: 'Rate limit reached. Try again in {seconds}s.',
     errorMsg: "Sorry, I couldn't process that. Please try again.",
