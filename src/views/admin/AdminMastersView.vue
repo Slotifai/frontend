@@ -26,7 +26,7 @@
               <tr v-for="m in masters" :key="m.id">
                 <td class="td">
                   <div style="display: flex; align-items: center; gap: 10px;">
-                    <AppAvatar :name="m.name" size="sm" :tone="avatarTone(m.name)" />
+                    <AppAvatar :name="m.name" size="sm" :tone="avatarTone(m.name)" :src="m.avatarUrl" />
                     <div>
                       <div style="font-weight: 500;">{{ m.name }}</div>
                       <div style="font-size: 12px; color: var(--text-muted);">{{ m.email }}</div>

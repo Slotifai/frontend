@@ -48,6 +48,7 @@ function normalizeUser(u: unknown): AdminUser {
       status: isBlocked ? 'BLOCKED' : 'ACTIVE',
       createdAt: (raw.createdAt as string) || (nestedUser.createdAt as string) || '',
       specialization: (raw.specialization as string) || undefined,
+      avatarUrl: (nestedUser.avatarUrl as string | null) ?? null,
     }
   }
 
