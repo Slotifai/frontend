@@ -9,6 +9,7 @@ export interface AuthUser {
   name: string
   role: UserRole
   telegramLinked?: boolean
+  avatarUrl?: string | null
 }
 
 export const useAuthStore = defineStore(

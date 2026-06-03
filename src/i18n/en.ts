@@ -305,6 +305,10 @@ export default {
     errorFailed: 'Failed to submit review.',
   },
 
+  profile: {
+    changeAvatar: 'Change avatar',
+    uploading: 'Uploading…',
+  },
   clientProfile: {
     title: 'Your profile',
     subtitle: 'Keep your info up to date so masters can reach you.',

@@ -305,6 +305,10 @@ export default {
     errorFailed: 'Не вдалося надіслати відгук.',
   },
 
+  profile: {
+    changeAvatar: 'Змінити аватар',
+    uploading: 'Завантаження…',
+  },
   clientProfile: {
     title: 'Ваш профіль',
     subtitle: "Тримайте дані актуальними, щоб майстри могли з вами зв'язатись.",

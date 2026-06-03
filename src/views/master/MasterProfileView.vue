@@ -8,7 +8,15 @@
       <div style="display: grid; grid-template-columns: 300px 1fr; gap: 24px; align-items: flex-start;">
         <aside style="display: flex; flex-direction: column; gap: 16px;">
           <div class="card card-pad" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <AppAvatar :name="user?.name || '?'" size="lg" tone="teal" />
+            <div class="avatar-upload-wrap" @click="triggerFileInput" :title="t('profile.changeAvatar')">
+              <AppAvatar :name="user?.name || '?'" size="lg" tone="teal" :src="user?.avatarUrl" />
+              <div class="avatar-upload-overlay">
+                <span class="mdi mdi-camera" style="font-size: 20px;" />
+              </div>
+              <input ref="fileInputRef" type="file" accept="image/*" style="display:none" @change="onAvatarChange" />
+            </div>
+            <div v-if="avatarUploading" style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">{{ t('profile.uploading') }}</div>
+            <ErrorMessage :message="avatarError" />
             <div style="font-weight: 600; margin-top: 12px;">{{ user?.name }}</div>
             <div style="color: var(--text-muted); font-size: 12px;">{{ specLabel || t('masterProfile.roleLabel') }}</div>
             <div v-if="memberSince" style="margin-top: 12px; width: 100%; border-top: 1px solid var(--divider); padding-top: 12px; display: flex; justify-content: space-between; font-size: 12px;">
@@ -87,6 +95,28 @@ import { masterMeApi } from '@/api/masterMe'
 import { useAuthStore } from '@/stores/auth'
 import { authApi } from '@/api/auth'
 import { SPECIALIZATION_KEYS, SPEC_API_VALUE, SPEC_KEY_BY_API } from '@/constants/specializations'
+
+const fileInputRef = ref<HTMLInputElement | null>(null)
+const avatarUploading = ref(false)
+const avatarError = ref('')
+
+function triggerFileInput() { fileInputRef.value?.click() }
+
+async function onAvatarChange(e: Event) {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  avatarUploading.value = true
+  avatarError.value = ''
+  try {
+    const res = await authApi.uploadAvatar(file)
+    if (auth.user) auth.setUser({ ...auth.user, avatarUrl: res.avatarUrl })
+  } catch (err: unknown) {
+    avatarError.value = extractErrorMessage(err, 'Failed to upload avatar.')
+  } finally {
+    avatarUploading.value = false
+    if (fileInputRef.value) fileInputRef.value.value = ''
+  }
+}
 
 const specOptions = computed(() =>
   SPECIALIZATION_KEYS.filter(k => k !== 'all').map(k => ({

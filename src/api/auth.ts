@@ -48,6 +48,7 @@ type RawMeResponse = {
   isEmailVerified: boolean
   createdAt: string
   telegramLinked: boolean
+  avatarUrl?: string | null
   profile: { id: number; name: string; phone: string } | null
 }
 
@@ -74,7 +75,16 @@ export const authApi = {
       name: r.data.profile?.name ?? r.data.email,
       role: r.data.role.toUpperCase() as AuthResponse['user']['role'],
       telegramLinked: r.data.telegramLinked,
+      avatarUrl: r.data.avatarUrl ?? null,
     })),
+
+  uploadAvatar: (file: File) => {
+    const fd = new FormData()
+    fd.append('file', file)
+    return apiClient.post<{ avatarUrl: string }>('/users/me/avatar', fd, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }).then((r) => r.data)
+  },
 
   verifyEmail: (token: string) =>
     apiClient.get('/auth/verify-email', { params: { token } }).then((r) => r.data),
