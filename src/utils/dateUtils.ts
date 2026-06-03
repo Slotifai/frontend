@@ -2,7 +2,7 @@ import { format, parseISO } from 'date-fns'
 import { enUS, uk } from 'date-fns/locale'
 import { i18n } from '@/i18n'
 
-function getLocale() {
+export function getLocale() {
   const lang = (i18n.global.locale as unknown as { value: string }).value ?? i18n.global.locale
   return lang === 'uk' ? uk : enUS
 }

@@ -10,7 +10,7 @@
           <div class="card card-pad" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
             <AppAvatar :name="user?.name || '?'" size="lg" tone="teal" />
             <div style="font-weight: 600; margin-top: 12px;">{{ user?.name }}</div>
-            <div style="color: var(--text-muted); font-size: 12px;">{{ form.specialization || t('masterProfile.roleLabel') }}</div>
+            <div style="color: var(--text-muted); font-size: 12px;">{{ specLabel || t('masterProfile.roleLabel') }}</div>
             <div v-if="memberSince" style="margin-top: 12px; width: 100%; border-top: 1px solid var(--divider); padding-top: 12px; display: flex; justify-content: space-between; font-size: 12px;">
               <span style="color: var(--text-muted);">{{ t('common.members') }}</span>
               <span style="font-weight: 500;">{{ memberSince }}</span>
@@ -81,8 +81,7 @@ import { useSaveSuccess } from '@/composables/useSaveSuccess'
 import { masterMeApi } from '@/api/masterMe'
 import { useAuthStore } from '@/stores/auth'
 import { authApi } from '@/api/auth'
-import { SPECIALIZATION_KEYS } from '@/constants/specializations'
-import { SPEC_API_VALUE } from '@/constants/specializations'
+import { SPECIALIZATION_KEYS, SPEC_API_VALUE, SPEC_KEY_BY_API } from '@/constants/specializations'
 
 const specOptions = computed(() =>
   SPECIALIZATION_KEYS.filter(k => k !== 'all').map(k => ({
@@ -90,6 +89,12 @@ const specOptions = computed(() =>
     label: t(`masters.specs.${k}`),
   }))
 )
+
+const specLabel = computed(() => {
+  if (!form.specialization) return ''
+  const key = SPEC_KEY_BY_API[form.specialization]
+  return key ? t(`masters.specs.${key}`) : form.specialization
+})
 
 const { t } = useI18n()
 const auth = useAuthStore()

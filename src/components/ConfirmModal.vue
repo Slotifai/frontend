@@ -17,9 +17,9 @@
             {{ cancelLabel }}
           </v-btn>
           <v-btn
-            :color="confirmColor"
+            :color="props.confirmColor"
             size="small"
-            :loading="loading"
+            :loading="props.loading"
             @click="emit('confirm')"
           >
             {{ confirmLabel }}
@@ -31,7 +31,12 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+const props = withDefaults(
   defineProps<{
     modelValue: boolean
     title?: string
@@ -42,14 +47,17 @@ withDefaults(
     loading?: boolean
   }>(),
   {
-    title: 'Confirm',
-    message: 'Are you sure?',
-    confirmLabel: 'Confirm',
-    cancelLabel: 'Cancel',
+    title: '',
+    message: '',
+    confirmLabel: '',
+    cancelLabel: '',
     confirmColor: 'error',
     loading: false,
   },
 )
+
+const cancelLabel = computed(() => props.cancelLabel || t('common.cancel'))
+const confirmLabel = computed(() => props.confirmLabel || t('common.confirm'))
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]

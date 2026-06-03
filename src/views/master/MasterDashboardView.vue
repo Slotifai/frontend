@@ -103,6 +103,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { format, startOfWeek, endOfWeek } from 'date-fns'
+import { getLocale } from '@/utils/dateUtils'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import SearchInput from '@/components/SearchInput.vue'
@@ -147,7 +148,7 @@ const statusFilters = computed(() => [
 ])
 
 const todayLabel = computed(() => {
-  const today = format(new Date(), 'EEEE, MMMM d')
+  const today = format(new Date(), 'EEEE, MMMM d', { locale: getLocale() })
   const scheduled = appointments.value.filter(a => a.status === 'SCHEDULED').length
   return t('masterDashboard.scheduledCount', { date: today, count: scheduled })
 })
