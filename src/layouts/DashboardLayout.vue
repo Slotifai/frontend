@@ -72,7 +72,7 @@
           <span>{{ themeStore.dark ? t('nav.lightMode') : t('nav.darkMode') }}</span>
         </button>
         <div class="sidebar-user" style="margin-top:8px;">
-          <AppAvatar :name="user?.name || '?'" size="sm" :tone="avatarTone" />
+          <AppAvatar :name="user?.name || '?'" size="sm" :tone="avatarTone" :src="user?.avatarUrl" />
           <div class="sidebar-user-info">
             <div class="sidebar-user-name">{{ user?.name || 'User' }}</div>
             <div class="sidebar-user-role">{{ user?.role === 'ADMIN' ? t('common.roleAdmin') : user?.role === 'MASTER' ? t('common.roleMaster') : t('common.roleClient') }}</div>
