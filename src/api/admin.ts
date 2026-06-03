@@ -19,6 +19,7 @@ export interface AdminUser {
   createdAt: string
   specialization?: string
   appointmentsCount?: number
+  avatarUrl?: string | null
 }
 
 export interface AdminAppointment {
@@ -60,6 +61,7 @@ function normalizeUser(u: unknown): AdminUser {
     name,
     role: String(raw.role).toUpperCase() as AdminUser['role'],
     status: isBlocked ? 'BLOCKED' : String(raw.status ?? 'active').toUpperCase() as AdminUser['status'],
+    avatarUrl: (raw.avatarUrl as string | null) ?? null,
   }
 }
 

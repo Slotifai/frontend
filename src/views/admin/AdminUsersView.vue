@@ -28,7 +28,7 @@
               <tr v-for="u in users" :key="u.id">
                 <td class="td">
                   <div style="display: flex; align-items: center; gap: 10px;">
-                    <AppAvatar :name="u.name" size="sm" :tone="avatarTone(u.name)" />
+                    <AppAvatar :name="u.name" size="sm" :tone="avatarTone(u.name)" :src="u.avatarUrl" />
                     <div>
                       <div style="font-weight: 500;">{{ u.name }}</div>
                       <div style="font-size: 12px; color: var(--text-muted);">{{ u.email }}</div>
