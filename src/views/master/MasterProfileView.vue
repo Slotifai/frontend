@@ -27,13 +27,18 @@
               <label class="sl-field"><span class="sl-label">{{ t('masterProfile.phone') }}</span><input v-model="form.phone" class="sl-input" /></label>
               <label class="sl-field"><span class="sl-label">{{ t('masterProfile.email') }}</span><input v-model="form.email" class="sl-input" disabled /></label>
             </div>
-            <label class="sl-field">
+            <div class="sl-field">
               <span class="sl-label">{{ t('masterProfile.specialization') }}</span>
-              <select v-model="form.specialization" class="sl-input">
-                <option value="">{{ t('masterProfile.specializationPlaceholder') }}</option>
-                <option v-for="s in specOptions" :key="s.value" :value="s.value">{{ s.label }}</option>
-              </select>
-            </label>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px;">
+                <span
+                  v-for="s in specOptions" :key="s.value"
+                  class="chip"
+                  :class="{ active: selectedSpecs.includes(s.value) }"
+                  style="cursor: pointer;"
+                  @click="toggleSpec(s.value)"
+                >{{ s.label }}</span>
+              </div>
+            </div>
             <FormTextarea v-model="form.notes" :label="t('masterProfile.about')" :placeholder="t('masterProfile.aboutPlaceholder')" min-height="110px" />
             <div v-if="saved" style="padding: 10px 14px; background: var(--success-soft); color: var(--success); border-radius: var(--r-sm); font-size: 13px;">{{ t('masterProfile.savedSuccess') }}</div>
             <ErrorMessage :message="serverError" />
@@ -90,17 +95,24 @@ const specOptions = computed(() =>
   }))
 )
 
-const specLabel = computed(() => {
-  if (!form.specialization) return ''
-  const key = SPEC_KEY_BY_API[form.specialization]
-  return key ? t(`masters.specs.${key}`) : form.specialization
-})
-
 const { t } = useI18n()
 const auth = useAuthStore()
 const user = computed(() => auth.user)
 
 const form = reactive({ firstName: '', lastName: '', email: '', phone: '', specialization: '', notes: '' })
+const selectedSpecs = ref<string[]>([])
+
+const specLabel = computed(() =>
+  selectedSpecs.value
+    .map(v => { const k = SPEC_KEY_BY_API[v]; return k ? t(`masters.specs.${k}`) : v })
+    .join(', ')
+)
+
+function toggleSpec(value: string) {
+  const idx = selectedSpecs.value.indexOf(value)
+  if (idx === -1) selectedSpecs.value.push(value)
+  else selectedSpecs.value.splice(idx, 1)
+}
 const saving = ref(false)
 const { saved, markSaved } = useSaveSuccess()
 const serverError = ref('')
@@ -133,6 +145,7 @@ async function fetchProfile() {
     form.email = p.email
     form.phone = p.phone ?? ''
     form.specialization = p.specialization ?? ''
+    selectedSpecs.value = p.specialization ? p.specialization.split(',').map((s: string) => s.trim()).filter(Boolean) : []
     form.notes = p.notes ?? ''
     if (p.createdAt) memberSince.value = new Date(p.createdAt).getFullYear().toString()
   } catch {}
@@ -146,7 +159,7 @@ async function saveProfile() {
     await masterMeApi.updateProfile({
       name,
       ...(form.phone ? { phone: form.phone } : {}),
-      specialization: form.specialization,
+      specialization: selectedSpecs.value.join(','),
       notes: form.notes,
     })
     if (auth.user) auth.setUser({ ...auth.user, name })
